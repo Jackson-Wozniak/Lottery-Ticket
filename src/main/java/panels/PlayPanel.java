@@ -14,14 +14,13 @@ public class PlayPanel extends JPanel {
     JackpotPanel jackpotPanel;
     ChooseNumbersPanel chooseNumbersPanel;
 
-    ArrayList<Integer> lotteryResults;
-    ArrayList<Integer> listOfGuesses = new ArrayList<>();
-    int matchingNumbers = 0;
+    ArrayList<Integer> lotteryResults; //max of 6
+    ArrayList<Integer> listOfGuesses = new ArrayList<>(); //max of 6
     JButton[] guessButtonList = new JButton[6];
     JButton[] lotteryButtonList = new JButton[6];
+    int matchingNumbers = 0; //keeps tracking of the guessed numbers that match lottery winners
 
     public PlayPanel(){
-
         this.setLayout(null);
         this.setBorder(new LineBorder(CustomColors.dark, 2));
         this.setBackground(CustomColors.darker);
@@ -71,22 +70,17 @@ public class PlayPanel extends JPanel {
                 listOfGuesses.add(Integer.valueOf(guessButtonList[i].getText()));
             }
 
-            /*lotteryResults.clear();
-            for(int i = 0; i < 6; i++){
-                lotteryResults.add(Integer.valueOf(lotteryButtonList[i].getText()));
-                listOfGuesses.add(Integer.valueOf(guessButtonList[i].getText()));
-            }*/
-
             for(int i = 0; i < 6; i++){
                 int guess = lotteryResults.get(i);
                 if(listOfGuesses.contains(guess)){
-                    matchingNumbers++; //keep track of the number of matches between guess and lottery winners
+                    matchingNumbers++;
                     lotteryButtonList[i].setBackground(CustomColors.gold);
                     lotteryButtonList[i].setForeground(CustomColors.dark);
                 }
 
             }
             System.out.println(matchingNumbers);
+            //if matching numbers is 6, then it is a total jackpot and the output is gold
             if(matchingNumbers == 6){
                 resultsPanel.setTextFields(
                         jackpotPanel.getPrizeWinnings(matchingNumbers), CustomColors.gold);
@@ -102,12 +96,13 @@ public class PlayPanel extends JPanel {
         restartButtonDetails(restartButton);
         this.add(restartButton);
         restartButton.addActionListener(e -> {
+            //unfinished
             for(int i = 0; i < 6; i++){
                 guessButtonList[i].setText("");
                 lotteryResults.clear();
                 listOfGuesses.clear();
                 chooseNumbersPanel.resetGuesses();
-                chooseNumbersPanel.revalidate();
+
             }
         });
     }
