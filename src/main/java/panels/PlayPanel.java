@@ -79,7 +79,7 @@ public class PlayPanel extends JPanel {
                 }
 
             }
-            System.out.println(matchingNumbers);
+
             //if matching numbers is 6, then it is a total jackpot and the output is gold
             if(matchingNumbers == 6){
                 resultsPanel.setTextFields(
@@ -92,19 +92,10 @@ public class PlayPanel extends JPanel {
             matchingNumbers = 0;
         });
 
-        JButton restartButton = new JButton("Restart");
+        JButton restartButton = new JButton("Exit");
         restartButtonDetails(restartButton);
         this.add(restartButton);
-        restartButton.addActionListener(e -> {
-            //unfinished
-            for(int i = 0; i < 6; i++){
-                guessButtonList[i].setText("");
-                lotteryResults.clear();
-                listOfGuesses.clear();
-                chooseNumbersPanel.resetGuesses();
-
-            }
-        });
+        restartButton.addActionListener(e -> System.exit(0));
     }
 
     public void restartButtonDetails(JButton restartButton){
