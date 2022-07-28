@@ -56,7 +56,7 @@ public class ChooseNumbersPanel extends JPanel {
     }
 
     //get instance of PlayPanel from main panel
-    public void setPlayPanel(PlayPanel playPanel){
+    public void setDependencies(PlayPanel playPanel){
         this.playPanel = playPanel;
     }
 

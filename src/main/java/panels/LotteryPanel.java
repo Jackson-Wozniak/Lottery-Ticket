@@ -6,16 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LotteryPanel extends JPanel {
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    ResultsPanel resultsPanel;
-    JackpotPanel jackpotPanel;
-    ChooseNumbersPanel chooseNumbersPanel;
-    PlayPanel playPanel;
+    private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private final ResultsPanel resultsPanel;
+    private final JackpotPanel jackpotPanel;
+    private final ChooseNumbersPanel chooseNumbersPanel;
+    private final PlayPanel playPanel;
 
     public LotteryPanel(){
 
         this.setLayout(null);
-        this.setPreferredSize(new Dimension(screenWidth(),screenHeight()));
+        this.setPreferredSize(new Dimension(getScreenWidth(), getScreenHeight()));
         this.setBackground(CustomColors.darker);
 
         this.resultsPanel = new ResultsPanel();
@@ -35,23 +35,35 @@ public class LotteryPanel extends JPanel {
         jackpotPanel.setBounds(30, 350, 250, 260);
         this.add(jackpotPanel);
 
-        setInstance();
-        setInstance2();
+        setDependencies();
     }
 
-    public void setInstance(){
-        chooseNumbersPanel.setPlayPanel(playPanel);
+    public void setDependencies(){
+        chooseNumbersPanel.setDependencies(playPanel);
+        playPanel.setDependencies(resultsPanel, jackpotPanel, chooseNumbersPanel);
     }
 
-    public void setInstance2(){
-        playPanel.setInstancePanel(resultsPanel, jackpotPanel, chooseNumbersPanel);
+    public ResultsPanel getResultsPanel() {
+        return resultsPanel;
     }
 
-    public int screenWidth(){
+    public JackpotPanel getJackpotPanel() {
+        return jackpotPanel;
+    }
+
+    public ChooseNumbersPanel getChooseNumbersPanel() {
+        return chooseNumbersPanel;
+    }
+
+    public PlayPanel getPlayPanel() {
+        return playPanel;
+    }
+
+    public int getScreenWidth(){
         return (int) screenSize.getWidth();
     }
 
-    public int screenHeight(){
+    public int getScreenHeight(){
         return (int) screenSize.getHeight();
     }
 }
