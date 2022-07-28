@@ -31,7 +31,7 @@ public class ResultsPanel extends JPanel {
         this.add(resultOutput);
     }
 
-    public void setTextFields(double winningBet, Color color){
+    public void setTextFields(double winningBet){
         if(winningBet == 0) {
             resultOutput.setForeground(CustomColors.red);
             resultOutput.setText("No Winners");
@@ -42,7 +42,7 @@ public class ResultsPanel extends JPanel {
             resultOutput.setText("$" + String.format("%.2f", winningBet) + " million!");
             return;
         }
-        resultOutput.setForeground(color);
+        resultOutput.setForeground(CustomColors.purple);
         resultOutput.setText("$" + String.format("%.2f", winningBet) + " thousand!");
 
     }

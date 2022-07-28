@@ -7,16 +7,21 @@ import java.awt.*;
 
 public class LotteryPanel extends JPanel {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    ResultsPanel resultsPanel = new ResultsPanel();
-    JackpotPanel jackpotPanel = new JackpotPanel();
-    ChooseNumbersPanel chooseNumbersPanel = new ChooseNumbersPanel();
-    PlayPanel playPanel = new PlayPanel();
+    ResultsPanel resultsPanel;
+    JackpotPanel jackpotPanel;
+    ChooseNumbersPanel chooseNumbersPanel;
+    PlayPanel playPanel;
 
     public LotteryPanel(){
 
         this.setLayout(null);
         this.setPreferredSize(new Dimension(screenWidth(),screenHeight()));
         this.setBackground(CustomColors.darker);
+
+        this.resultsPanel = new ResultsPanel();
+        this.jackpotPanel = new JackpotPanel();
+        this.chooseNumbersPanel = new ChooseNumbersPanel();
+        this.playPanel = new PlayPanel();
 
         resultsPanel.setBounds(0,0,320,320);
         this.add(resultsPanel);

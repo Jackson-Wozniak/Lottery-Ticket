@@ -11,12 +11,14 @@ public class ChooseNumbersPanel extends JPanel {
     JPanel gridOfNumbers;
     int guess = 0;
     ArrayList<Integer> listOfGuesses = new ArrayList<>();
-    JButton[] numberButtons = new JButton[37];
+    JButton[] numberButtons;
 
     public ChooseNumbersPanel(){
         guess = 0;
         this.setLayout(null);
         this.setBackground(CustomColors.darker);
+
+        this.numberButtons = new JButton[37];
 
         gridOfNumbers = new JPanel();
         gridOfNumbers.setBackground(CustomColors.darker);
@@ -53,10 +55,6 @@ public class ChooseNumbersPanel extends JPanel {
         }
     }
 
-    public void resetGuesses(){
-        guess = 0;
-    }
-
     //get instance of PlayPanel from main panel
     public void setPlayPanel(PlayPanel playPanel){
         this.playPanel = playPanel;
@@ -77,9 +75,14 @@ public class ChooseNumbersPanel extends JPanel {
         numberButton.setForeground(CustomColors.light);
     }
 
-    public void setNewBackground(){
-        /*for(int i = 0; i < numberButtons.length; i++){
-            this.numberButtons[i].setBackground(CustomColors.darkest);
-        }*/
+    public void setGuessZero() {
+        this.guess = 0;
+        resetBackgroundOfButtons();
+    }
+
+    public void resetBackgroundOfButtons(){
+        for (int i = 1; i < numberButtons.length; i++) {
+            numberButtons[i].setBackground(CustomColors.darkest);
+        }
     }
 }

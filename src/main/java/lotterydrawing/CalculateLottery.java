@@ -5,9 +5,8 @@ import java.util.Random;
 
 public class CalculateLottery {
 
-    private final ArrayList<Integer> lotteryWinners = new ArrayList<>();
-
-    public CalculateLottery(){
+    public static ArrayList<Integer> calculateLotteryNumbers(){
+        ArrayList<Integer> lotteryWinners = new ArrayList<>();
         Random random = new Random();
         for(int i = 0; i < 6; i++){
             int result = random.nextInt(36) + 1;
@@ -22,9 +21,6 @@ public class CalculateLottery {
                 lotteryWinners.add(result);
             }
         }
-    }
-
-    public ArrayList<Integer> getLotteryWinners(){
         return lotteryWinners;
     }
 }

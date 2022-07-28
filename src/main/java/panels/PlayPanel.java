@@ -50,7 +50,7 @@ public class PlayPanel extends JPanel {
         }
 
         JButton playButton = new JButton("Play");
-        playButtonDetails(playButton);
+        playButtonDetails(playButton, 140);
         this.add(playButton);
         playButton.addActionListener(e -> {
 
@@ -63,8 +63,7 @@ public class PlayPanel extends JPanel {
             }
 
             //do random drawing for the 6 lottery numbers, add them to the buttons
-            CalculateLottery calculateLottery = new CalculateLottery();
-            this.lotteryResults = calculateLottery.getLotteryWinners();
+            this.lotteryResults = CalculateLottery.calculateLotteryNumbers();
             for(int i = 0; i < 6; i++){
                 lotteryButtonList[i].setText(String.valueOf(lotteryResults.get(i)));
                 listOfGuesses.add(Integer.valueOf(guessButtonList[i].getText()));
@@ -81,39 +80,31 @@ public class PlayPanel extends JPanel {
             }
 
             //if matching numbers is 6, then it is a total jackpot and the output is gold
-            if(matchingNumbers == 6){
-                resultsPanel.setTextFields(
-                        jackpotPanel.getPrizeWinnings(matchingNumbers), CustomColors.gold);
-            }else{
-                resultsPanel.setTextFields(
-                        jackpotPanel.getPrizeWinnings(matchingNumbers), CustomColors.purple);
-            }
-
+            resultsPanel.setTextFields(jackpotPanel.getPrizeWinnings(matchingNumbers));
             matchingNumbers = 0;
+            playButton.setEnabled(false);
         });
 
-        JButton restartButton = new JButton("Exit");
-        restartButtonDetails(restartButton);
+        JButton restartButton = new JButton("Restart");
+        playButtonDetails(restartButton, 260);
         this.add(restartButton);
-        restartButton.addActionListener(e -> System.exit(0));
+        restartButton.addActionListener(e -> {
+            playButton.setEnabled(true);
+            for(int i = 0; i < guessButtonList.length; i++){
+                resetButtonPropertiesForNewGame(guessButtonList);
+                resetButtonPropertiesForNewGame(lotteryButtonList);
+                chooseNumbersPanel.setGuessZero();
+            }
+        });
     }
 
-    public void restartButtonDetails(JButton restartButton){
-        restartButton.setBackground(CustomColors.darkest);
-        restartButton.setBorderPainted(false);
-        restartButton.setFont(new Font(Font.SERIF, Font.BOLD, 16));
-        restartButton.setForeground(CustomColors.light);
-        restartButton.setFocusPainted(false);
-        restartButton.setBounds(260, 250, 100, 50);
-    }
-
-    public void playButtonDetails(JButton playButton){
+    public void playButtonDetails(JButton playButton, int xValue){
         playButton.setBackground(CustomColors.darkest);
         playButton.setBorderPainted(false);
         playButton.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         playButton.setForeground(CustomColors.light);
         playButton.setFocusPainted(false);
-        playButton.setBounds(140, 250, 100, 50);
+        playButton.setBounds(xValue, 250, 100, 50);
     }
 
     public void setGuessText(int index, int number){
@@ -140,6 +131,13 @@ public class PlayPanel extends JPanel {
         guessButtonList.setFont(new Font(Font.SERIF, Font.BOLD, 16));
         guessButtonList.setForeground(CustomColors.light);
         guessButtonList.setBounds(45 + (i * 70), 110, 60,60);
+    }
+
+    public void resetButtonPropertiesForNewGame(JButton[] buttons){
+        for (JButton button : buttons) {
+            button.setBackground(CustomColors.darkest);
+            button.setText("");
+        }
     }
 
 }

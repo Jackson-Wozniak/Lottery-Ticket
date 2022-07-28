@@ -10,8 +10,7 @@ class CalculateLotteryTest {
 
     @Test
     void lotteryWinnersListMaxLengthOf6(){
-        CalculateLottery calculateLottery = new CalculateLottery();
-        ArrayList<Integer> testArray = calculateLottery.getLotteryWinners();
+        ArrayList<Integer> testArray = CalculateLottery.calculateLotteryNumbers();
         assertEquals(6, testArray.size());
     }
 }
