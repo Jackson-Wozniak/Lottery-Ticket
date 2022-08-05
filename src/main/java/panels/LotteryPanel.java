@@ -21,7 +21,9 @@ public class LotteryPanel extends JPanel {
         this.resultsPanel = new ResultsPanel();
         this.jackpotPanel = new JackpotPanel();
         this.chooseNumbersPanel = new ChooseNumbersPanel();
-        this.playPanel = new PlayPanel();
+        this.playPanel = new PlayPanel(resultsPanel, jackpotPanel, chooseNumbersPanel);
+        chooseNumbersPanel.setPlayPanel(playPanel);
+
 
         resultsPanel.setBounds(0,0,320,320);
         this.add(resultsPanel);
@@ -34,13 +36,6 @@ public class LotteryPanel extends JPanel {
 
         jackpotPanel.setBounds(30, 350, 250, 260);
         this.add(jackpotPanel);
-
-        setDependencies();
-    }
-
-    public void setDependencies(){
-        chooseNumbersPanel.setDependencies(playPanel);
-        playPanel.setDependencies(resultsPanel, jackpotPanel, chooseNumbersPanel);
     }
 
     public ResultsPanel getResultsPanel() {

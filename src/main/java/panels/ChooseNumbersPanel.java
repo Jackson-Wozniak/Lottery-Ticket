@@ -55,11 +55,6 @@ public class ChooseNumbersPanel extends JPanel {
         }
     }
 
-    //get instance of PlayPanel from main panel
-    public void setDependencies(PlayPanel playPanel){
-        this.playPanel = playPanel;
-    }
-
     public void tooManyGuessesError(){
         JOptionPane.showMessageDialog(new JFrame(),
                 "Cannot Guess more than 6 times",
@@ -84,5 +79,9 @@ public class ChooseNumbersPanel extends JPanel {
         for (int i = 1; i < numberButtons.length; i++) {
             numberButtons[i].setBackground(CustomColors.darkest);
         }
+    }
+
+    public void setPlayPanel(PlayPanel playPanel){
+        this.playPanel = playPanel;
     }
 }

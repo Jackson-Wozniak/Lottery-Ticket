@@ -18,7 +18,14 @@ public class PlayPanel extends JPanel {
     private final JButton[] guessButtonList = new JButton[6];
     private final JButton[] lotteryButtonList = new JButton[6];
 
-    public PlayPanel(){
+    public PlayPanel(ResultsPanel resultsPanel,
+                     JackpotPanel jackpotPanel,
+                     ChooseNumbersPanel chooseNumbersPanel){
+
+        this.resultsPanel = resultsPanel;
+        this.jackpotPanel = jackpotPanel;
+        this.chooseNumbersPanel = chooseNumbersPanel;
+
         this.setLayout(null);
         this.setBorder(new LineBorder(CustomColors.dark, 2));
         this.setBackground(CustomColors.darker);
@@ -117,12 +124,6 @@ public class PlayPanel extends JPanel {
 
     public void setGuessText(int index, int number){
         guessButtonList[index].setText(String.valueOf(number));
-    }
-
-    public void setDependencies(ResultsPanel resultsPanel, JackpotPanel jackpotPanel, ChooseNumbersPanel chooseNumbersPanel){
-        this.resultsPanel = resultsPanel;
-        this.jackpotPanel = jackpotPanel;
-        this.chooseNumbersPanel = chooseNumbersPanel;
     }
     
     public void lotteryButtonsDetails(JButton lotteryButtonList, int i){
